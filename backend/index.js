@@ -1,9 +1,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./utility/dbConfig.js";
-import userRouter from "./routes/user.route.js";
+import authRouter from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import userRouter from "./routes/user.routes.js";
 
 dotenv.config();
 const app = express();
@@ -20,7 +21,7 @@ app.use(
 app.get("/", async (req, res) => {
   return res.send("Home Page");
 });
-
+app.use("/v1/api/auth", authRouter);
 app.use("/v1/api/user", userRouter);
 
 app.listen(PORT, () => {

@@ -32,7 +32,7 @@ function SignUp() {
             };
 
             const result = await axios.post(
-                `${serverUrl}/v1/api/user/signup`,
+                `${serverUrl}/v1/api/auth/signup`,
                 formData,
                 { withCredentials: true }
             );
