@@ -12,6 +12,7 @@
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "cloudinary": "^2.11.0",
+    "cookies-parser": "^1.2.0",
     "dotenv": "^18.0.9",
     "express": "^5.3.0",
     "jsonwebtoken": "^9.0.3",
