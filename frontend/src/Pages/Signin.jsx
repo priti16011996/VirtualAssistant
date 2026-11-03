@@ -6,14 +6,16 @@ import bg from "../assets/authBg.png";
 import { userDataContext } from "../context/UserContext.jsx";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
     const [showPassword, setShowPassword] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const Navigate = useNavigate();
 
-    const { serverUrl } = useContext(userDataContext);
+    const { serverUrl, userData, setUserData, } = useContext(userDataContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,14 +36,16 @@ function Signin() {
                 formData,
                 { withCredentials: true }
             );
-
+            setUserData(result.data);
             toast.success(result.data.message);
 
             // Clear form after successful signup
             setEmail("");
             setPassword("");
+            Navigate("/");
 
         } catch (error) {
+            setUserData(null);
             console.error("Signup error:", error);
 
             const errorMessage =
