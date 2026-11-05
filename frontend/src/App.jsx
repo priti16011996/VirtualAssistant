@@ -8,6 +8,7 @@ import Home from "./Pages/Home.jsx";
 import Customize from "./Pages/Customize.jsx";
 
 import { userDataContext } from "./context/UserContext.jsx";
+import CustomizeName from "./Pages/CustomizeName.jsx";
 
 function App() {
   const { userData, loading } = useContext(userDataContext);
@@ -26,7 +27,7 @@ function App() {
               userData.virtualAssistantName
               ? <Home />
               : <Navigate to="/customize" replace />
-            : <Navigate to="/signup" replace />
+            : <Navigate to="/signin" replace />
         }
       />
 
@@ -53,6 +54,14 @@ function App() {
         element={
           userData
             ? <Customize />
+            : <Navigate to="/signup" replace />
+        }
+      />
+      <Route
+        path="/customizeName"
+        element={
+          userData
+            ? <CustomizeName />
             : <Navigate to="/signup" replace />
         }
       />

@@ -2,6 +2,8 @@
 import { useRef, useState, useEffect, useContext } from "react";
 import { userDataContext } from "../context/UserContext.jsx";
 import Card from "../components/Card";
+import { useNavigate } from "react-router-dom";
+
 
 import image1 from "../assets/image1.png";
 import image2 from "../assets/image2.png";
@@ -21,6 +23,7 @@ function Customize() {
 
     const { serverUrl, userData, setUserData, loading, customFrontendImage, setCustomFrontendImage, customBackendImage,
         setCustomBackendImage, selectedImage, setSelectedImage, } = useContext(userDataContext);
+    const navigate = useNavigate();
     const handleImageUpload = (e) => {
         const file = e.target.files?.[0];
 
@@ -37,16 +40,22 @@ function Customize() {
         setCustomBackendImage(file);
         setCustomFrontendImage(previewUrl);
 
-        // Select custom image
+        // Select uploaded image
         setSelectedImage(previewUrl);
 
         e.target.value = "";
     };
 
-
     return (
         <div className="min-h-screen w-full bg-gradient-to-b from-[#08065c] via-[#050329] to-black flex flex-col items-center justify-center px-5 py-5">
-
+            <button
+                type="button"
+                onClick={() => navigate("/customize")}
+                className="self-start mb-6 flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors"
+            >
+                <span className="text-xl">←</span>
+                <span>Back</span>
+            </button>
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-5">
                 Choose Your AI Assistant
             </h1>
@@ -100,6 +109,7 @@ function Customize() {
                         font-semibold transition-all duration-300
                         hover:bg-blue-400 hover:text-white
                         hover:scale-105 active:scale-95"
+                onClick={() => navigate("/CustomizeName")}
             >
                 Next
             </button>}

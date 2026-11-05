@@ -16,6 +16,7 @@ function UserContext({ children }) {
   const [customFrontendImage, setCustomFrontendImage] = useState("");
   const [customBackendImage, setCustomBackendImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [assistantName, setAssistantName] = useState("");
 
   const handleCurrentUser = async () => {
     try {
@@ -48,6 +49,8 @@ function UserContext({ children }) {
     setCustomBackendImage,
     selectedImage,
     setSelectedImage,
+    assistantName,
+    setAssistantName
   };
 
   return (
